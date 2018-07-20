@@ -47,6 +47,16 @@ const getMinuteLcg = (seed) => {
   return createLcg(seed, 2147483647, 48271, 0)
 }
 
+const mergeTimeWithDate = (time, date) =>
+  new Date(
+    date.getFullYear(),
+    date.getMonth(),
+    date.getDate(),
+    time.hour,
+    time.minute,
+    time.second
+  )
+
 export const fromDate = (date) => {
   // extract seeds
   let seed = getSeedsFromDate(date)
@@ -57,9 +67,15 @@ export const fromDate = (date) => {
   let hLcg = getHourLcg(seed.hour)
   let hSequence = getSequenceFromLcg(hLcg, 24)
 
-  return {
+  // build flowtime
+  let time = {
     hour: hSequence[date.getHours()],
     minute: mSequence[date.getMinutes()],
     second: date.getSeconds()
+  }
+
+  return {
+    ...time,
+    toDate: () => mergeTimeWithDate(time, date)
   }
 }
