@@ -31,4 +31,4 @@ deploy:
     url: http://timeless.ucodia.space/
   script:
   - pip install awscli
-  - aws s3 sync dist/ s3://$S3_BUCKET_NAME
+  - aws s3 sync dist/ s3://$S3_BUCKET_NAME --delete
