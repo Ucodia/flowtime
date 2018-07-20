@@ -2,7 +2,7 @@
 node_modules
 
 # Artifacts
-dist
+dist/flowtime.*
 coverage
 
 # MacOS

@@ -13,7 +13,8 @@
     "dev": "microbundle watch",
     "format": "prettier --write \"{src,test}/**/*.js\"",
     "test": "jest --coverage --ci",
-    "watch": "jest --watch"
+    "watch": "jest --watch",
+    "demo": "npm run build && open dist/index.html"
   },
   "devDependencies": {
     "babel-core": "^6.26.3",
