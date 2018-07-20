@@ -38,7 +38,7 @@ describe('flowtime > fromDate', () => {
     expect(actuals).toMatchObject(expected)
   })
 
-  it('every hour and minute combinations of flowtime should appear only once per day', () => {
+  it('should return every hour and minute combinations of flowtime only once per day', () => {
     var actuals = []
     var expected = []
 
@@ -55,8 +55,10 @@ describe('flowtime > fromDate', () => {
 
     expect(actualsSort).toMatchObject(expected)
   })
+})
 
-  it('flowtime should convert to date with expected values', () => {
+describe('flowtime > fromDate > toDate', () => {
+  it('should convert flowtime to date object', () => {
     var now = new Date()
     var flowtime = fromDate(now)
     var flowdate = flowtime.toDate()
