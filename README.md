@@ -99,6 +99,10 @@ A time period can be uniquely identified by assembling numerical values from the
 - [Numerical Recipes](3) on Wikipedia
 - [Lehmer PRNG](4) on Wikipedia
 
+## License
+
+`flowtime` is MIT licensed. See [LICENSE](LICENSE)
+
 [1]: https://en.wikipedia.org/wiki/Flow_(psychology)
 [2]: https://en.wikipedia.org/wiki/Linear_congruential_generator
 [3]: https://en.wikipedia.org/wiki/Numerical_Recipes
