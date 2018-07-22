@@ -45,15 +45,13 @@ const getMinuteLcg = (seed) =>
   // values from MINSTD
   createLcg(seed, 2147483647, 48271, 0)
 
-const mergeTimeWithDate = (time, date) =>
-  new Date(
-    date.getFullYear(),
-    date.getMonth(),
-    date.getDate(),
-    time.hour,
-    time.minute,
-    time.second
-  )
+const mergeTimeWithDate = (time, date) => {
+  const flowdate = new Date(date.getTime())
+  flowdate.setHours(time.hour)
+  flowdate.setMinutes(time.minute)
+  flowdate.setSeconds(time.second)
+  return flowdate
+}
 
 export const fromDate = (date) => {
   // extract seeds

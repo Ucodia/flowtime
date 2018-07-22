@@ -59,16 +59,37 @@ describe('flowtime > fromDate', () => {
 })
 
 describe('flowtime > fromDate > toDate', () => {
+  const expectSameDate = (actual, expected) => {
+    expect(actual.getFullYear()).toEqual(expected.getFullYear())
+    expect(actual.getMonth()).toEqual(expected.getMonth())
+    expect(actual.getDate()).toEqual(expected.getDate())
+  }
+
+  const expectSameTime = (actual, expected) => {
+    expect(actual.getHours()).toEqual(expected.hour)
+    expect(actual.getMinutes()).toEqual(expected.minute)
+    expect(actual.getSeconds()).toEqual(expected.second)
+  }
+
   it('should convert flowtime to date object', () => {
     const now = new Date()
     const flowtime = fromDate(now)
     const flowdate = flowtime.toDate()
 
-    expect(flowdate.getFullYear()).toEqual(now.getFullYear())
-    expect(flowdate.getMonth()).toEqual(now.getMonth())
-    expect(flowdate.getDate()).toEqual(now.getDate())
-    expect(flowdate.getHours()).toEqual(flowtime.hour)
-    expect(flowdate.getMinutes()).toEqual(flowtime.minute)
-    expect(flowdate.getSeconds()).toEqual(flowtime.second)
+    expectSameDate(flowdate, now)
+    expectSameTime(flowdate, flowtime)
+  })
+
+  // see issue https://gitlab.com/ucodia/flowtime/issues/1
+  it('should convert flowtime from years 0 to 99 as expected', () => {
+    for (let i = 0; i < 100; i++) {
+      const yearXX = i.toString().padStart(2, '0')
+      const earlyDate = new Date(`00${yearXX}-01-01T00:00:00`)
+      const flowtime = fromDate(earlyDate)
+      const flowdate = flowtime.toDate()
+
+      expectSameDate(flowdate, earlyDate)
+      expectSameTime(flowdate, flowtime)
+    }
   })
 })
