@@ -1,5 +1,4 @@
 import { fromDate } from '../src/flowtime'
-import mockDate from './mockDate'
 
 describe('flowtime > fromDate', () => {
   it('should return valid time values', () => {
@@ -20,11 +19,11 @@ describe('flowtime > fromDate', () => {
 
   it('should map to known flowtime values', () => {
     const actuals = [
-      mockDate(1901, 10, 18, 6, 12, 37),
-      mockDate(2069, 4, 20, 4, 20, 0),
-      mockDate(1975, 5, 1, 12, 54, 9),
-      mockDate(1988, 9, 30, 10, 59, 46),
-      mockDate(2052, 1, 1, 18, 37, 19)
+      new Date('1901-10-18T06:12:37'),
+      new Date('2069-04-20T04:20:00'),
+      new Date('1975-05-01T12:54:09'),
+      new Date('1988-09-30T10:59:46'),
+      new Date('2052-01-01T18:37:19')
     ].map(fromDate)
 
     const expected = [
@@ -44,7 +43,9 @@ describe('flowtime > fromDate', () => {
 
     for (let h = 0; h < 24; h++) {
       for (let m = 0; m < 60; m++) {
-        actuals.push(fromDate(mockDate(2000, 1, 1, h, m, 0)))
+        const hh = h.toString().padStart(2, '0')
+        const mm = m.toString().padStart(2, '0')
+        actuals.push(fromDate(new Date(`2000-01-01T${hh}:${mm}:00`)))
         expected.push({ hour: h, minute: m, second: 0 })
       }
     }
@@ -59,9 +60,9 @@ describe('flowtime > fromDate', () => {
 
 describe('flowtime > fromDate > toDate', () => {
   it('should convert flowtime to date object', () => {
-    var now = new Date()
-    var flowtime = fromDate(now)
-    var flowdate = flowtime.toDate()
+    const now = new Date()
+    const flowtime = fromDate(now)
+    const flowdate = flowtime.toDate()
 
     expect(flowdate.getFullYear()).toEqual(now.getFullYear())
     expect(flowdate.getMonth()).toEqual(now.getMonth())
