@@ -18,21 +18,21 @@ As with *common time*, hour changes every 60 minutes and minutes changes every 6
 
 ## Installation
 
-### With Node
+### With npm
 
-Install with `npm`.
+Install the library.
 
 ```bash
 npm i flowtime
 ```
 
-To use in a Node.js app, do the usual.
+To import in a Node.js app, do the usual.
 
 ```js
 const flowtime = require('flowtime')
 ```
 
-To use in a JavaScript app with a module bundler, do the usual.
+To import in a JavaScript app with a module bundler, do the usual.
 
 ```js
 import { fromDate } from 'flowtime'
@@ -62,7 +62,7 @@ console.log(time)
 // {hour: 1, minute: 28, second: 42, toDate: ƒ}
 ```
 
-The flow time object also exposes a `toDate` function that returns a JavaScript `Date` adjusted with flow time.
+The flow time object also exposes a `toDate` function that returns a JavaScript `Date` adjusted to *flow time*.
 
 ```js
 console.log(time.toDate())
