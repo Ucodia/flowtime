@@ -94,6 +94,10 @@ Two different PRNG are required, one to generate the hours sequence and one to g
 
 A time period can be uniquely identified by assembling numerical values from the date and *common time*. For example, if the date is `July 21, 2018` and the *common time* is `01:28:42`, the day can be uniquely identified by `20180721` and the hour by `2018072101`, which can then *seed* respectively the hour PRNG and the minute PRNG to compute the *flow time* for that date and time.
 
+### Walkthrough
+
+See a walkthrough at [RunKit](https://runkit.com/ucodia/flowtime-algorithm-walkthrough).
+
 ## References
 
 - [Flow](1) on Wikipedia
