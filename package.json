@@ -1,21 +1,34 @@
 {
   "name": "flowtime",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "An unpredictable time library for JavaScript",
   "license": "MIT",
-  "author": "Lionel Ringenbach <lionel@ucodia.space> (https://ucodia.space)",
+  "homepage": "http://timeless.ucodia.space/",
+  "repository": "gitlab:ucodia/flowtime",
+  "bugs": "https://gitlab.com/ucodia/flowtime/issues",
+  "keywords": [
+    "flow",
+    "time"
+  ],
+  "author": "Lionel Ringenbach <lionel@ucodia.space> (https://ucodia.space/)",
   "main": "dist/flowtime.js",
   "umd:main": "dist/flowtime.umd.js",
+  "unpkg": "dist/flowtime.umd.js",
   "module": "dist/flowtime.mjs",
   "source": "src/index.js",
+  "files": [
+    "dist/flowtime.js",
+    "dist/flowtime.mjs",
+    "dist/flowtime.umd.js"
+  ],
   "scripts": {
-    "prepare": "npm run build",
     "build": "microbundle",
     "dev": "microbundle watch",
     "format": "prettier --write \"{src,test}/**/*.js\"",
     "test": "jest --coverage --ci",
     "watch": "jest --watch",
-    "demo": "npm run build && open dist/index.html"
+    "demo": "npm run build && open dist/index.html",
+    "prepare": "npm run build"
   },
   "devDependencies": {
     "babel-core": "^6.26.3",
