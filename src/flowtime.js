@@ -19,7 +19,7 @@ const getSeedsFromDate = (date) => {
 }
 
 const getSequenceFromLcg = (lcg, length) => {
-  let values = []
+  const values = []
 
   // generate sequence
   for (let i = 0; i < length; i++) {
@@ -27,7 +27,7 @@ const getSequenceFromLcg = (lcg, length) => {
   }
 
   // copy and sort sequence
-  let sorted = values.slice().sort()
+  const sorted = values.slice().sort()
 
   // normalize values based on their order
   for (let i = 0; i < sorted.length; i++) {
@@ -37,15 +37,13 @@ const getSequenceFromLcg = (lcg, length) => {
   return values
 }
 
-const getHourLcg = (seed) => {
+const getHourLcg = (seed) =>
   // values from the Numerical Recipes book
-  return createLcg(seed, 4294967296, 1664525, 1013904223)
-}
+  createLcg(seed, 4294967296, 1664525, 1013904223)
 
-const getMinuteLcg = (seed) => {
+const getMinuteLcg = (seed) =>
   // values from MINSTD
-  return createLcg(seed, 2147483647, 48271, 0)
-}
+  createLcg(seed, 2147483647, 48271, 0)
 
 const mergeTimeWithDate = (time, date) =>
   new Date(
@@ -59,16 +57,16 @@ const mergeTimeWithDate = (time, date) =>
 
 export const fromDate = (date) => {
   // extract seeds
-  let seed = getSeedsFromDate(date)
+  const seed = getSeedsFromDate(date)
 
   // generate sequences
-  let mLcg = getMinuteLcg(seed.minute)
-  let mSequence = getSequenceFromLcg(mLcg, 60)
-  let hLcg = getHourLcg(seed.hour)
-  let hSequence = getSequenceFromLcg(hLcg, 24)
+  const mLcg = getMinuteLcg(seed.minute)
+  const mSequence = getSequenceFromLcg(mLcg, 60)
+  const hLcg = getHourLcg(seed.hour)
+  const hSequence = getSequenceFromLcg(hLcg, 24)
 
   // build flowtime
-  let time = {
+  const time = {
     hour: hSequence[date.getHours()],
     minute: mSequence[date.getMinutes()],
     second: date.getSeconds()

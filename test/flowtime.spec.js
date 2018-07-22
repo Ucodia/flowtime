@@ -39,8 +39,8 @@ describe('flowtime > fromDate', () => {
   })
 
   it('should return every hour and minute combinations of flowtime only once per day', () => {
-    var actuals = []
-    var expected = []
+    const actuals = []
+    const expected = []
 
     for (let h = 0; h < 24; h++) {
       for (let m = 0; m < 60; m++) {
