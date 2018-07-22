@@ -9,6 +9,7 @@
   "module": "dist/flowtime.mjs",
   "source": "src/index.js",
   "scripts": {
+    "prepare": "npm run build",
     "build": "microbundle",
     "dev": "microbundle watch",
     "format": "prettier --write \"{src,test}/**/*.js\"",
