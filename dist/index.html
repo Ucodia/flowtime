@@ -28,8 +28,7 @@
       var showRealTime = false;
 
       function updateTime() {
-        var now = new Date();
-        var time = showRealTime ? now : flowtime.fromDate(now).toDate();
+        var time = showRealTime ? now : flowtime.fromNow().toDate();
         content.textContent = time.toLocaleTimeString();
       }
 

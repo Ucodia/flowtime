@@ -75,3 +75,5 @@ export const fromDate = (date) => {
     toDate: () => mergeTimeWithDate(time, date)
   }
 }
+
+export const fromNow = () => fromDate(new Date())

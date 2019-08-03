@@ -35,7 +35,7 @@ const flowtime = require('flowtime')
 To import in a JavaScript app with a module bundler, do the usual.
 
 ```js
-import { fromDate } from 'flowtime'
+import { fromNow, fromDate } from 'flowtime'
 ```
 
 ### In the browser
@@ -48,7 +48,7 @@ To use in a web page with traditional script loading, you can import the script 
 
 ## Usage
 
-The library exposes a single function, `fromDate` which takes a JavaScript `Date` as argument and returns a flow time object.
+The library exposes two functions, `fromNow` which returns the current flow time, and `fromDate` which takes a JavaScript `Date` as argument to return its corresponding flow time.
 
 ```js
 import { fromDate } from 'flowtime'

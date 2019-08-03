@@ -1,3 +1,3 @@
-import { fromDate } from './flowtime'
+import { fromDate, fromNow } from './flowtime'
 
-export { fromDate }
+export { fromDate, fromNow }
