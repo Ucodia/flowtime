@@ -1,10 +1,6 @@
-variables:
-  S3_BUCKET_NAME: "timeless.ucodia.space"
-
 stages:
   - build
   - test
-  - deploy
 
 build:
   stage: build
@@ -22,13 +18,3 @@ test:
   script:
   - npm install
   - npm run test
-
-deploy:
-  stage: deploy
-  image: python:latest
-  environment:
-    name: $CI_BUILD_REF_NAME
-    url: http://timeless.ucodia.space/
-  script:
-  - pip install awscli
-  - aws s3 sync dist/ s3://$S3_BUCKET_NAME --delete
