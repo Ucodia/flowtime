@@ -1,6 +1,6 @@
 {
   "name": "flowtime",
-  "version": "1.2.2",
+  "version": "1.2.3",
   "description": "An unpredictable time library for JavaScript",
   "license": "MIT",
   "homepage": "http://timeless.ucodia.space/",
@@ -17,8 +17,8 @@
   "module": "dist/flowtime.mjs",
   "source": "src/index.js",
   "files": [
-    "src/*.js",
-    "dist/*.js"
+    "src/*",
+    "dist/*"
   ],
   "scripts": {
     "build": "microbundle",
