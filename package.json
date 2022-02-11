@@ -26,7 +26,6 @@
     "format": "prettier --write \"{src,test}/**/*.js\"",
     "test": "jest --coverage --ci",
     "watch": "jest --watch",
-    "demo": "npm run build && open dist/index.html",
     "prepare": "npm run build"
   },
   "devDependencies": {
