@@ -4,7 +4,7 @@
 
 Like the *common time*, it has 24 hours per day and 60 minutes per hour, but the order in which the hours and minutes occur is unpredictable, yet universal.
 
-See it in action at [timeless.ucodia.space](http://timeless.ucodia.space/) 🚀
+See it in action at [ucodia.space](https://ucodia.space/flowtime) 🚀
 
 ## What is the flow time?
 
@@ -35,7 +35,7 @@ const flowtime = require('flowtime')
 To import in a JavaScript app with a module bundler, do the usual.
 
 ```js
-import { fromNow, fromDate } from 'flowtime'
+import { fromDate } from 'flowtime'
 ```
 
 ### In the browser

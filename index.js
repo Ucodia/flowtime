@@ -1,5 +1,17 @@
-import createLcg from './createLcg'
-
+const createLcg = (seed, modulus, multiplier, increment) => {
+    const m = modulus
+    const a = multiplier
+    const c = increment
+    let z = seed
+  
+    return {
+      rand: () => {
+        z = (a * z + c) % m
+        return z / m
+      }
+    }
+  }
+  
 const getSeedsFromDate = (date) => {
   const year = date.getFullYear()
   const month = (date.getMonth() + 1).toString().padStart(2, '0')
@@ -37,14 +49,6 @@ const getSequenceFromLcg = (lcg, length) => {
   return values
 }
 
-const getHourLcg = (seed) =>
-  // values from the Numerical Recipes book
-  createLcg(seed, 4294967296, 1664525, 1013904223)
-
-const getMinuteLcg = (seed) =>
-  // values from MINSTD
-  createLcg(seed, 2147483647, 48271, 0)
-
 const mergeTimeWithDate = (time, date) => {
   const flowdate = new Date(date.getTime())
   flowdate.setHours(time.hour)
@@ -57,10 +61,14 @@ export const fromDate = (date) => {
   // extract seeds
   const seed = getSeedsFromDate(date)
 
+  // create hours LCG using values from MINSTD
+  const mLcg = createLcg(seed.minute, 2147483647, 48271, 0)
+  
+  // create hours LCG using values from the Numerical Recipes book
+  const hLcg = createLcg(seed.hour, 4294967296, 1664525, 1013904223)
+
   // generate sequences
-  const mLcg = getMinuteLcg(seed.minute)
   const mSequence = getSequenceFromLcg(mLcg, 60)
-  const hLcg = getHourLcg(seed.hour)
   const hSequence = getSequenceFromLcg(hLcg, 24)
 
   // build flowtime
@@ -75,5 +83,3 @@ export const fromDate = (date) => {
     toDate: () => mergeTimeWithDate(time, date)
   }
 }
-
-export const fromNow = () => fromDate(new Date())
