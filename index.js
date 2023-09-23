@@ -54,9 +54,7 @@ export const fromDate = (date) => {
     ...time,
     toDate: () => {
       const flowdate = new Date(date.getTime());
-      flowdate.setHours(time.hour);
-      flowdate.setMinutes(time.minute);
-      flowdate.setSeconds(time.second);
+      flowdate.setHours(time.hour, time.minute, time.second);
       return flowdate;
     },
   };
