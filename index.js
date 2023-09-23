@@ -1,24 +1,15 @@
 const createLcg = (seed, modulus, multiplier, increment) => {
-  const m = modulus;
-  const a = multiplier;
-  const c = increment;
   let z = seed;
-
-  return {
-    rand: () => {
-      z = (a * z + c) % m;
-      return z / m;
-    },
+  return () => {
+    z = (multiplier * z + increment) % modulus;
+    return z / modulus;
   };
 };
 
 const getSeedsFromDate = (date) => {
   const year = date.getFullYear();
   const month = (date.getMonth() + 1).toString().padStart(2, "0");
-  const day = date
-    .getDate() // day of the month
-    .toString()
-    .padStart(2, "0");
+  const day = date.getDate().toString().padStart(2, "0");
   const hour = date.getHours().toString().padStart(2, "0");
 
   return {
@@ -28,30 +19,15 @@ const getSeedsFromDate = (date) => {
 };
 
 const getSequenceFromLcg = (lcg, length) => {
-  const values = [];
-
-  // generate sequence
-  for (let i = 0; i < length; i++) {
-    values.push(lcg.rand());
-  }
-
+  // generate number sequence
+  // [0.4, 0.2, 0.3]
+  const sequence = Array.from({ length }, lcg);
   // copy and sort sequence
-  const sorted = values.slice().sort();
-
-  // normalize values based on their order
-  for (let i = 0; i < sorted.length; i++) {
-    values[values.indexOf(sorted[i])] = i;
-  }
-
-  return values;
-};
-
-const mergeTimeWithDate = (time, date) => {
-  const flowdate = new Date(date.getTime());
-  flowdate.setHours(time.hour);
-  flowdate.setMinutes(time.minute);
-  flowdate.setSeconds(time.second);
-  return flowdate;
+  // [0.2, 0.3, 0.4]
+  const sorted = [...sequence].sort();
+  // map sequence elements to their sorting index
+  // [2, 0, 1]
+  return sequence.map((value) => sorted.indexOf(value));
 };
 
 export const fromDate = (date) => {
@@ -59,24 +35,29 @@ export const fromDate = (date) => {
   const seed = getSeedsFromDate(date);
 
   // create hours LCG using values from MINSTD
-  const mLcg = createLcg(seed.minute, 2147483647, 48271, 0);
+  const minuteLcg = createLcg(seed.minute, 2147483647, 48271, 0);
 
   // create hours LCG using values from the Numerical Recipes book
-  const hLcg = createLcg(seed.hour, 4294967296, 1664525, 1013904223);
+  const hourLcg = createLcg(seed.hour, 4294967296, 1664525, 1013904223);
 
   // generate sequences
-  const mSequence = getSequenceFromLcg(mLcg, 60);
-  const hSequence = getSequenceFromLcg(hLcg, 24);
+  const minuteSequence = getSequenceFromLcg(minuteLcg, 60);
+  const hourSequence = getSequenceFromLcg(hourLcg, 24);
 
-  // build flowtime
   const time = {
-    hour: hSequence[date.getHours()],
-    minute: mSequence[date.getMinutes()],
+    hour: hourSequence[date.getHours()],
+    minute: minuteSequence[date.getMinutes()],
     second: date.getSeconds(),
   };
 
   return {
     ...time,
-    toDate: () => mergeTimeWithDate(time, date),
+    toDate: () => {
+      const flowdate = new Date(date.getTime());
+      flowdate.setHours(time.hour);
+      flowdate.setMinutes(time.minute);
+      flowdate.setSeconds(time.second);
+      return flowdate;
+    },
   };
 };
