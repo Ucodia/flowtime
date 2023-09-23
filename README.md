@@ -1,3 +1,6 @@
+![npm version](https://img.shields.io/npm/v/flowtime)
+![bundle size](https://img.shields.io/bundlephobia/minzip/flowtime)
+
 # ~ flowtime ~
 
 `flowtime` is an unpredictable time library for JavaScript that computes the *flow time*.
