@@ -1,22 +1,21 @@
 import { fromDate } from ".";
+const fs = require("fs");
 
 describe("flowtime", () => {
   it("should map to known flowtime values", () => {
-    const actuals = [
-      new Date("1901-10-18T06:12:37"),
-      new Date("2069-04-20T04:20:00"),
-      new Date("1975-05-01T12:54:09"),
-      new Date("1988-09-30T10:59:46"),
-      new Date("2052-01-01T18:37:19"),
-    ].map(fromDate);
+    const data = fs.readFileSync("test_data.csv", "utf-8");
+    const lines = data.split("\n").filter((line) => line); // filter out any empty lines
 
-    const expected = [
-      { hour: 5, minute: 3, second: 37 },
-      { hour: 5, minute: 57, second: 0 },
-      { hour: 13, minute: 31, second: 9 },
-      { hour: 21, minute: 56, second: 46 },
-      { hour: 9, minute: 51, second: 19 },
-    ];
+    const actuals = [];
+    const expected = [];
+
+    lines.forEach((line) => {
+      const [dateStr, timeStr] = line.split(",");
+      const [hour, minute, second] = timeStr.split(":").map(Number);
+
+      actuals.push(fromDate(new Date(dateStr)));
+      expected.push({ hour, minute, second });
+    });
 
     expect(actuals).toMatchObject(expected);
   });
