@@ -1,0 +1,26 @@
+{
+  "name": "flowtime",
+  "version": "2.0.0",
+  "type": "module",
+  "description": "An unpredictable time library for JavaScript",
+  "license": "MIT",
+  "homepage": "http://ucodia.space/flowtime",
+  "repository": "github:ucodia/flowtime",
+  "bugs": "https://github.com/ucodia/flowtime/issues",
+  "keywords": [
+    "flow",
+    "time",
+    "thought-experiment",
+    "art"
+  ],
+  "author": "Lionel Ringenbach <lionel@ucodia.space> (https://ucodia.space/)",
+  "main": "index.js",
+  "files": [
+    "index.js"
+  ],
+  "exports": "./index.js",
+  "scripts": {
+    "test": "node --test",
+    "prepublishOnly": "npm test"
+  }
+}
