@@ -1,0 +1,3 @@
+[submodule "packages/flowtime-watch/sensor-watch"]
+	path = packages/flowtime-watch/sensor-watch
+	url = https://github.com/joeycastillo/Sensor-Watch.git
