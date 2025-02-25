@@ -10,7 +10,7 @@ The concept emerged from a simple observation: whenever I became aware of time, 
 
 Although it preserves the familiar structure of 24 hours per day 60 minutes per hour, the order of its hours and minutes is unpredictable and unique each day. Yet it remains universal, meaning the flowtime is the same for everyone, just like conventional time. This uncertainty encourages us to loosen our attachment to time, creating an opportunity to return into the flow of the present moment.
 
-What started as a conceptual exploration has since materialized into a tangible, interactive technology that melds philosophical inquiry with practical application. It is now available in the form of a JavaScript library, a C library, a classic Casio watch, and the [official flowtime website](7).
+What started as a conceptual exploration has since materialized into a tangible, interactive technology that melds philosophical inquiry with practical application. It is now available in the form of a JavaScript library, a command line tool, a classic Casio watch, and on the [official flowtime website](7).
 
 Concept and development by [Lionel Ringenbach (a.k.a. Ucodia)](6), started in September 2017.
 
@@ -25,7 +25,7 @@ The [xorshift32 algorithm](3) generates the random numbers, and the [Fisher-Yate
 This repository houses multiple implementations of the flowtime concept:
 
 - [flowtime-js](packages/flowtime-js/): The original flowtime library for JavaScript
-- [flowtime-c](packages/flowtime-c/): A port of the flowtime library for C
+- [flowtime-cli](packages/flowtime-cli/): A command line tool to show the current flowtime
 - [flowtime-watch](packages/flowtime-watch/): A flowtime integration for Casio F-91W as a [Sensor Watch](5) firmware
 
 ## Useful references
